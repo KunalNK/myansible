@@ -1,0 +1,16 @@
+---
+    # ansible-playbook rem_file.yml
+    
+    - name: run tasks on all hosts
+      hosts: "*"
+      tasks:
+           
+        - name: create a filee
+          file:
+            path: $HOME/test_file
+            state: touch
+         
+        - name: remove file
+          file:
+            path: $HOME/test_file
+            state: absent

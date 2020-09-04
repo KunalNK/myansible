@@ -1,0 +1,22 @@
+---
+    # ansible-playbook package.yml
+    
+    - name: run tasks on all hosts
+      hosts: myhost
+      tasks:
+           
+        - name: install python3.6
+          yum:
+           name:
+             - python3.6
+             - python3-pip
+           state: latest
+          become_user: root
+        
+        - name: install BeautifulSoup, requests, lxml
+          pip:
+            name:
+              - beautifulsoup4
+              - requests
+              - lxml
+              

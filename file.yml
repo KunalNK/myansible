@@ -1,0 +1,30 @@
+---
+# ansible-playbook file.yml
+
+- name: run tasks on all hosts
+  hosts: "*"
+  tasks:
+    - name: create multiple directories in a loop
+      file:
+        path: "$HOME/{{ item }}"
+        state: directory
+      loop:
+        - test_directory1
+        - test_directory2
+        - test_directory3
+
+    - name: remove directories
+      file:
+        path: "$HOME/test_directory1"
+        state: absent
+     
+    - name: remove directories
+      file:
+        path: "$HOME/test_directory2"
+        state: absent
+
+
+    - name: remove directories
+      file:
+        path: "$HOME/test_directory3"
+        state: absent

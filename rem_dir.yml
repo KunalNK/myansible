@@ -1,0 +1,13 @@
+---
+    # ansible-playbook rem_dir.yml
+    
+    - name: run tasks on all hosts
+      hosts: "*"
+      tasks:
+           
+        - name: remove directories
+          file:
+            path: "$HOME/test_directory"
+            state: absent
+         
+        

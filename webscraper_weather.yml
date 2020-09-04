@@ -1,0 +1,63 @@
+---
+  # ansible-playbook script.yml
+  - name: run tasks on all hosts
+    hosts: "*"
+    become: True
+    tasks:
+      - name: Install the python package
+        yum:
+          name: python
+          state: present
+          update_cache: True
+      
+      - name: Install pip
+        yum:
+          name: python-pip
+          state: present
+          update_cache: True
+    
+      - name: Install wheel
+        pip:
+          name: wheel
+          state: present
+
+      - name: Install csv
+        pip:
+          name: --user python-csv 
+          state: present
+    
+      - name: Install git
+        yum:
+          name: git-all
+          state: present
+          update_cache: True
+
+      - name: Install requests
+        pip:
+          name: requests
+          state: present
+      
+      - name: Install BeautifulSoup
+        pip:
+          name: beautifulsoup4
+          state: present
+        
+        
+
+      - name: Copy file with owner and permissions
+        copy:
+            src: /home/kkunal/kk-ansible/git.sh
+            dest: /home/ec2-user
+            owner: root
+            group: root
+            mode: '0644'
+      
+      - name: Run the python script
+        script: "/home/ec2-user/my_weather_scraper/weather.py"
+        
+
+
+     
+
+      
+     

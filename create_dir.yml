@@ -1,0 +1,13 @@
+---
+    
+    
+    - name: run tasks on all hosts
+      hosts: "*"
+      tasks:
+           
+        - name: create_directory
+          file:
+            path: $HOME/test_directory
+            state: directory
+         
+        

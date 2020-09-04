@@ -1,0 +1,41 @@
+---
+    # Setup LAMP Stack
+    - hosts: myhost
+      tasks:
+        - name: install lamp stack
+          become: yes
+          become_user: root
+          yum:
+            pkg:
+              - httpd
+              - php
+              - mysql-server
+            state: present
+            update_cache: yes
+    
+        - name: start apache service
+          become: yes
+          become_user: root
+          service:
+            name: httpd
+            state: started
+            enabled: yes
+    
+        - name: start php service
+          become: yes
+          become_user: root
+          service:
+            name: php
+            state: started
+            enabled: yes
+    
+        - name: create target directory
+          file: path=/var/www/html state=directory mode=0755
+    
+        - name: deploy index.html
+          become: yes
+          become_user: root
+          copy:
+            src: /tmp/index.html
+            dest: /var/www/html/index.html
+    

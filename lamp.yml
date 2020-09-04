@@ -1,0 +1,25 @@
+---
+    # Setup LAMP Stack
+    - hosts: myhost
+      tasks:
+        - name: install lamp stack
+         
+          yum:
+                name= {{ item }}
+                state= latest
+          with_items:
+             - httpd
+             - php
+             - mysql-server
+            
+    
+        - name: start  services
+          service:
+                      name= {{ item }} state=started
+          
+         
+          with_items:
+               - httpd
+               - mysqld
+    
+       

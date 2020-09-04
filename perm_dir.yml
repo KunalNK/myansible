@@ -1,0 +1,20 @@
+---
+    # ansible-playbook perm_dir.yml
+    
+    - name: run tasks on all hosts
+      hosts: "*"
+      tasks:
+           
+        - name: create_directory
+          file:
+            path: $HOME/test_directory
+            state: directory
+
+        - name: change permission of directory
+          file:
+            path: "/home/{{ ansible_user }}/test_directory"
+            state: directory
+            owner: root
+            group: root
+            mode: 0755
+          become: true
