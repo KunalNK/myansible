@@ -2,7 +2,7 @@
     # ansible-playbook package.yml
     
     - name: run tasks on all hosts
-      hosts: myhost
+      hosts: all
       tasks:
            
         - name: install python3.6
